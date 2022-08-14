@@ -1,9 +1,10 @@
-import './App.css';
+import styles from './styles/App.module.scss'
 import Table from './components/Table'
 import SearchInput from './components/SearchInput'
 import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import dataContext from './context/dataContext'
+import spinner from'./assets/spinner.svg';
 
 const GET_ROCKET = gql`
   query LaunQuery($limit: Int, $offset: Int) {
@@ -55,12 +56,14 @@ function App() {
         setInputValue
       }
     }>
-      <div className="App">
+      <div className={styles.app}>
         <SearchInput  />
-        {!data && loading && <p>Loading...</p>}
-        {data && <Table rocketData={data} />}
-        <button disabled={!page}onClick={back}>back</button>
-        <button onClick={forward}>forward</button>
+        {!data && loading && <img src={spinner} alt='loading spinner'/>}
+        {data && <Table rocketData={data} className={styles.table}/>}
+        <section>
+          <button className={styles.actionButton} disabled={!page} onClick={back}>back</button>
+          <button className={styles.actionButton} disabled={data && data.launches.length === 0} onClick={forward}>forward</button>
+        </section>
       </div>
     </dataContext.Provider>
   );

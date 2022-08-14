@@ -2,6 +2,7 @@ import TableHead from './TableHead'
 import TableBody from './TableBody'
 import { useContext } from 'react'
 import dataContext from '../context/dataContext'
+import styles from '../styles/Table.module.scss'
 
 const Table = ({rocketData}) => {
   const {setSortField, setTableHeadTitle} = useContext(dataContext)
@@ -21,7 +22,7 @@ const Table = ({rocketData}) => {
   }
 
   return (
-    <table style={{'borderSpacing' : 0, 'border': '10px solid green'}}>
+    <table className={styles.table}>
       <TableHead handleSorting={handleSorting}/>
       <TableBody rocketData={rocketData} />
     </table>

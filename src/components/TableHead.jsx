@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import styles from '../styles/TableHead.module.css'
+import styles from '../styles/TableHead.module.scss'
 import { useContext } from 'react'
 import dataContext from '../context/dataContext'
 
