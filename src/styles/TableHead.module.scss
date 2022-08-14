@@ -4,4 +4,7 @@
   background-color: #d8d8d8;
   cursor: pointer;
   height: 3.5vh;
+  & img {
+    width: 20px;
+  }
 }
