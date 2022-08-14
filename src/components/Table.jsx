@@ -1,7 +1,11 @@
 import TableHead from './TableHead'
 import TableBody from './TableBody'
+import { useContext } from 'react'
+import dataContext from '../context/dataContext'
 
-const Table = ({rocketData, sortField, setSortField, tableHeadTitle, setTableHeadTitle}) => {
+const Table = ({rocketData}) => {
+  const {setSortField, setTableHeadTitle} = useContext(dataContext)
+  
   const handleSorting = (label, sortOrder) => {
     setSortField(label)
     setTableHeadTitle(currentTableHead => currentTableHead.map(tableHead => {
@@ -18,8 +22,8 @@ const Table = ({rocketData, sortField, setSortField, tableHeadTitle, setTableHea
 
   return (
     <table style={{'borderSpacing' : 0, 'border': '10px solid green'}}>
-      <TableHead tableHeadTitle={tableHeadTitle} handleSorting={handleSorting}/>
-      <TableBody rocketData={rocketData} tableHeadTitle={tableHeadTitle} sortField={sortField}/>
+      <TableHead handleSorting={handleSorting}/>
+      <TableBody rocketData={rocketData} />
     </table>
   )
 }

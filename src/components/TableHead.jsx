@@ -1,7 +1,10 @@
 import {useState} from 'react'
 import styles from '../styles/TableHead.module.css'
+import { useContext } from 'react'
+import dataContext from '../context/dataContext'
 
-const TableHead = ({tableHeadTitle, handleSorting}) => {
+const TableHead = ({handleSorting}) => {
+  const {tableHeadTitle} = useContext(dataContext)
   const [order, setOrder] = useState(null)
   const [sortColumn, setSortColumn] = useState(null)
 
@@ -12,6 +15,7 @@ const TableHead = ({tableHeadTitle, handleSorting}) => {
     setOrder(sortingOrder)
     handleSorting(label, sortingOrder)
   }
+  
   return (
     <thead>
       <tr>

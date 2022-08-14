@@ -1,7 +1,9 @@
 import './App.css';
 import Table from './components/Table'
+import SearchInput from './components/SearchInput'
 import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import dataContext from './context/dataContext'
 
 const GET_ROCKET = gql`
   query LaunQuery($limit: Int, $offset: Int) {
@@ -24,6 +26,8 @@ function App() {
     {columnName: 'Rocket Type', label: 'rocket_type', order: null},
     {columnName: 'Launch Date', label: 'launch_date_local', order: null},
   ])
+  const [inputValue, setInputValue] = useState("")
+
   const [page, setPage] = useState(0)
   const {data, loading} = useQuery(GET_ROCKET, {
     variables: {
@@ -40,20 +44,25 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {!data && loading && <p>Loading...</p>}
-      {data && 
-        <Table 
-          rocketData={data} 
-          sortField={sortField} 
-          setSortField={setSortField} 
-          tableHeadTitle={tableHeadTitle}
-          setTableHeadTitle={setTableHeadTitle}
-        />
+    <dataContext.Provider
+      value={
+      { 
+        sortField, 
+        tableHeadTitle,
+        setSortField, 
+        setTableHeadTitle,
+        inputValue, 
+        setInputValue
       }
-      <button disabled={!page}onClick={back}>back</button>
-      <button onClick={forward}>forward</button>
-    </div>
+    }>
+      <div className="App">
+        <SearchInput  />
+        {!data && loading && <p>Loading...</p>}
+        {data && <Table rocketData={data} />}
+        <button disabled={!page}onClick={back}>back</button>
+        <button onClick={forward}>forward</button>
+      </div>
+    </dataContext.Provider>
   );
 }
 
