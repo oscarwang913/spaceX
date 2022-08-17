@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/spacex/static/css/main.350d4a9b.css",
+    "main.js": "/spacex/static/js/main.c896135b.js",
+    "static/js/787.c30a6e17.chunk.js": "/spacex/static/js/787.c30a6e17.chunk.js",
+    "static/media/spinner.svg": "/spacex/static/media/spinner.d438a347f0b7469b4450e7bbfd3484e4.svg",
+    "index.html": "/spacex/index.html",
+    "main.350d4a9b.css.map": "/spacex/static/css/main.350d4a9b.css.map",
+    "main.c896135b.js.map": "/spacex/static/js/main.c896135b.js.map",
+    "787.c30a6e17.chunk.js.map": "/spacex/static/js/787.c30a6e17.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.350d4a9b.css",
+    "static/js/main.c896135b.js"
+  ]
+}
