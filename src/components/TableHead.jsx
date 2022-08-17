@@ -1,17 +1,14 @@
 import {useState} from 'react'
 import styles from '../styles/TableHead.module.scss'
-import { useContext } from 'react'
-import dataContext from '../context/dataContext'
 import upArrow from '../assets/icons8-up-48.png'
 import downArrow from '../assets/icons8-down-48.png'
 
-const TableHead = ({handleSorting}) => {
-  const {tableHeadTitle} = useContext(dataContext)
+const TableHead = ({tableHeadTitle, handleSorting}) => {
   const [order, setOrder] = useState(null)
   const [sortColumn, setSortColumn] = useState(null)
 
   const onSortingChange = (label) => {
-    //**default stauts is asc. Once click, the order becomes desc.
+    //**default stauts is asc. Once click, the order becomes desc
     const sortingOrder = label === sortColumn && order === 'asc' ? 'desc' : 'asc'
     setSortColumn(label)
     setOrder(sortingOrder)
