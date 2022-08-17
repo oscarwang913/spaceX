@@ -1,14 +1,19 @@
 import TableHead from './TableHead'
 import TableBody from './TableBody'
-import { useState, useContext, useMemo } from 'react'
-import dataContext from '../context/dataContext'
+import { useState, useMemo } from 'react'
 import styles from '../styles/Table.module.scss'
 import {sortData, filterData} from '../utils/utils'
 import SearchInput from './SearchInput'
 
 const Table = ({rocketData}) => {
+  const [sortField, setSortField] = useState(null)
+  const [tableHeadTitle, setTableHeadTitle] = useState([
+    {columnName: 'Mission Name', label: 'mission_name', order: null},
+    {columnName: 'Rocket Name', label: 'rocket_name', order: null},
+    {columnName: 'Rocket Type', label: 'rocket_type', order: null},
+    {columnName: 'Launch Date', label: 'launch_date_local', order: null},
+  ])
   const [inputValue, setInputValue] = useState("")
-  const {sortField, setSortField, tableHeadTitle, setTableHeadTitle} = useContext(dataContext)
   const [currentpage, setCurrentPage] = useState(1)
   const dataPerPage = 20
   const originData =  [...rocketData.launches]
@@ -53,7 +58,7 @@ const Table = ({rocketData}) => {
     <>
       <SearchInput handleValueChange={onChange} value={inputValue}/>
       <table className={styles.table}>
-        <TableHead handleSorting={handleSorting}/>
+        <TableHead handleSorting={handleSorting} tableHeadTitle={tableHeadTitle}/>
         <TableBody rocketData={slicedRocketData} dataPerPage={dataPerPage}/>
       </table>
       <section>
